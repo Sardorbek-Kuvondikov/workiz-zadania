@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Input field default state */
+.input-invalid {
+  border-color: red;
+}
+
+.input-valid {
+  border-color: green;
+}

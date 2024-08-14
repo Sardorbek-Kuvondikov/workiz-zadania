@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workiz</title>
+    <link rel="stylesheet" href="./styles/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container max-w-[1280px] m-auto">
+      <div class="w-[90px] m-auto mt-5 text-center js-menu-btn">
+        <button
+          class="border-2 rounded-md border-zinc-300 p-2 hover:shadow-md transition-all"
+        >
+          <span class="font-semibold">Menu</span>
+          <span id="arrowBottom"
+            ><i class="fa-solid fa-arrow-down text-sm ml-2"></i
+          ></span>
+          <span class="hidden" id="arrowTop"
+            ><i class="fa-solid fa-arrow-up text-sm ml-2"></i
+          ></span>
+        </button>
+        <ul
+          class="w-[250px] p-2 rounded-md mt-3 hidden shadow-custom-shadow js-menu-text"
+        >
+          <li
+            class="p-2 rounded-md font-semibold text-xl hover:bg-[#2B74DA] cursor-pointer hover:text-white transition-all"
+          >
+            <a href="#">Duplicate</a>
+          </li>
+          <li
+            class="p-2 rounded-md font-semibold text-lg hover:bg-[#2B74DA] cursor-pointer hover:text-white transition-all"
+          >
+            <a href="#">Marge</a>
+          </li>
+          <li
+            class="p-2 rounded-md font-semibold text-lg hover:bg-[#2B74DA] cursor-pointer hover:text-white transition-all"
+          >
+            <a href="#">Export as XLS</a>
+          </li>
+          <li
+            class="p-2 rounded-md font-semibold text-lg hover:bg-[#2B74DA] cursor-pointer hover:text-white transition-all"
+          >
+            <a href="#">Convert to a lead</a>
+          </li>
+          <li
+            class="p-2 rounded-md font-semibold text-lg hover:bg-[#2B74DA] cursor-pointer hover:text-white transition-all flex items-center gap-2"
+          >
+            <span class="pb-[3px] px-[10px] bg-[#FFD503] rounded-[2px]">
+              <i class="fa-solid fa-w text-[10px] text-black"></i>
+            </span>
+            <button class="js-newcreate-btn">
+              <a href="#">NEW Create a job</a>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Modal Create job-->
+      <div
+        class="relative z-10 hidden"
+        id="modal"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          aria-hidden="true"
+        ></div>
+
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div class="w-[1000px] m-auto">
+            <div
+              class="relative transform overflow-hidden bg-white text-left shadow-xl transition-all"
+            >
+              <div class="bg-[#F9F9FB]">
+                <div>
+                  <div
+                    class="pl-4 flex items-center justify-between bg-[#f2f2f2] border-b-2"
+                  >
+                    <h2 class="text-xl font-semibold">NEW Create a job</h2>
+                    <button
+                      class="py-3 px-6 hover:bg-red-600 transition-all hover:text-white js-modal-none-btn"
+                    >
+                      <i class="fa-solid fa-x"></i>
+                    </button>
+                  </div>
+                  <div class="m-auto py-12 px-[50px]">
+                    <form class="js-form">
+                      <div class="flex gap-5">
+                        <div
+                          class="w-full p-4 pb-20 inline-block rounded-xl shadow-custom-b-shadow bg-white"
+                        >
+                          <h3 class="mb-3 text-3xl font-semibold text-zinc-500">
+                            Client details
+                          </h3>
+                          <div class="flex items-center gap-4">
+                            <input
+                              class="w-full p-2 border-2 rounded-md border-zinc-300 outline-none`"
+                              type="text"
+                              placeholder="First name"
+                              required
+                            />
+                            <input
+                              class="w-full p-2 border-2 rounded-md border-zinc-300 outline-none"
+                              type="text"
+                              placeholder="Last name"
+                              required
+                            />
+                          </div>
+                          <input
+                            class="w-full mt-4 p-2 border-2 border-zinc-300 rounded-md outline-none"
+                            type="tel"
+                            placeholder="Phone"
+                            required
+                          />
+                          <input
+                            class="w-full mt-4 p-2 border-2 border-zinc-300 rounded-md outline-none"
+                            type="email"
+                            placeholder="Email (optional)"
+                            required
+                          />
+                        </div>
+                        <div
+                          class="w-full p-4 {pb-20} inline-block rounded-xl shadow-custom-b-shadow bg-white"
+                        >
+                          <h3 class="mb-3 text-3xl font-semibold text-zinc-500">
+                            Job Type
+                          </h3>
+                          <select
+                            class="p-2 w-full border-2 border-zinc-300 rounded-md text-[18px] outline-none"
+                            required
+                          >
+                            <option value="" selected disabled>Job type</option>
+                            <option value="recall">Select job type</option>
+                            <option value="recall">Recall Job</option>
+                          </select>
+                          <select
+                            class="mt-4 p-2 w-full border-2 border-zinc-300 rounded-md text-[18px] outline-none"
+                            required
+                          >
+                            <option value="" selected disabled>
+                              Job source
+                            </option>
+                            <option value="recall">GL Pinellas</option>
+                            <option value="recall">Gl Job</option>
+                          </select>
+                          <textarea
+                            class="mt-2 w-full h-[105px] p-2 border-2 text-[18px] border-zinc-300 rounded-md outline-none"
+                            placeholder="Job description (optional)"
+                            required
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div class="mt-5 flex gap-5">
+                        <div
+                          class="w-full p-4 pb-20 inline-block rounded-xl shadow-custom-b-shadow bg-white"
+                        >
+                          <h3 class="mb-3 text-3xl font-semibold text-zinc-500">
+                            Service location
+                          </h3>
+                          <input
+                            class="w-full p-2 border-2 rounded-md border-zinc-300 outline-none"
+                            type="text"
+                            placeholder="Address"
+                            required
+                          />
+                          <input
+                            class="w-full mt-4 p-2 border-2 rounded-md border-zinc-300 outline-none"
+                            type="text"
+                            placeholder="City"
+                            required
+                          />
+                          <input
+                            class="w-full mt-4 p-2 border-2 border-zinc-300 rounded-md outline-none"
+                            type="text"
+                            placeholder="State"
+                            required
+                          />
+                          <div class="mt-4 flex items-center gap-3">
+                            <input
+                              class="w-full p-2 border-2 border-zinc-300 rounded-md outline-none"
+                              type="text"
+                              placeholder="Zip code"
+                              required
+                            />
+                            <select
+                              class="w-full p-2 border-2 border-zinc-300 rounded-md text-zinc-400 outline-none js-user-area"
+                              required
+                            >
+                              <option value="" selected disabled>Area</option>
+                              <option value="all">Samarqand</option>
+                              <option value="all">Toshkent</option>
+                              <option value="all">Jizzax</option>
+                              <option value="all">Xorazm</option>
+                              <option value="all">Buxoro</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          class="w-full p-4 pb-20 inline-block rounded-xl shadow-custom-b-shadow bg-white"
+                        >
+                          <h3 class="mb-3 text-3xl font-semibold text-zinc-500">
+                            Scheduled
+                          </h3>
+                          <input
+                            class="w-full p-2 border-2 rounded-md border-zinc-300 outline-none text-zinc-400"
+                            type="date"
+                            placeholder="Start date"
+                            required
+                          />
+                          <div class="flex items-center gap-3">
+                            <div class="relative w-full">
+                              <input
+                                class="w-full mt-4 p-2 border-2 border-zinc-300 rounded-md outline-none"
+                                type="text"
+                                placeholder="Start time"
+                                required
+                              />
+                              <span class="absolute top-[26px] right-3"
+                                ><i class="fa-solid fa-clock text-zinc-400"></i
+                              ></span>
+                            </div>
+                            <div class="relative w-full">
+                              <input
+                                class="w-full mt-4 p-2 border-2 border-zinc-300 rounded-md outline-none"
+                                type="text"
+                                placeholder="End time"
+                                required
+                              />
+                              <span class="absolute top-[26px] right-3"
+                                ><i class="fa-solid fa-clock text-zinc-400"></i
+                              ></span>
+                            </div>
+                          </div>
+                          <select
+                            class="mt-4 p-2 w-full border-2 border-zinc-300 rounded-md text-zinc-400 outline-none"
+                            required
+                          >
+                            <option value="" selected disabled>
+                              Test select
+                            </option>
+                            <option value="temur">Temur Yusupov</option>
+                            <option value="odil">Odil To'xtamurodov</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="mt-10 text-center">
+                        <button
+                          type="submit"
+                          class="p-2 px-4 rounded-[25px] bg-yellow-400 text-lg font-[800] hover:shadow-custom-b-shadow transition-all js-create-btn"
+                        >
+                          Create job
+                        </button>
+                        <button
+                          type="button"
+                          class="ml-2 p-2 px-4 rounded-[25px] bg-zinc-300 text-lg font-[800] hover:shadow-custom-b-shadow transition-all"
+                        >
+                          Save info
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>
